@@ -14,7 +14,16 @@ const setDataInLocalStorage = function (data) {
 
 const getDataFromLocalStorage = localStorage.getItem(LOCALSTORAGE_KEY);
 
-player.setCurrentTime(getDataFromLocalStorage);
+player.setCurrentTime(getDataFromLocalStorage).then(function(seconds) {
+
+}).catch(function(error) {
+  switch (error.name) {
+      case 'RangeError':
+          break;
+      default:
+          break;
+  }
+});;
 
 player.on('timeupdate', throttle(setDataInLocalStorage, 1000));
 
