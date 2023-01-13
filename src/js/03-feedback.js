@@ -29,7 +29,7 @@ function removeDataFromLocalStorage(evt){
 }
 
 function getDataFromLocalStorage(){
-    const savedSettings = localStorage.getItem(LOCALSTORAGE_KEY || "");
+    const savedSettings = localStorage.getItem(LOCALSTORAGE_KEY);
     const parsedSettings = JSON.parse(savedSettings);
 
     if(parsedSettings){
