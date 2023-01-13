@@ -12,7 +12,7 @@ const formData = {};
 
 function setDataInLocalStorage(evt){
     formData[evt.target.name] = evt.target.value;
-    localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(formData))
+    localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(formData));
 }
 
 function removeDataFromLocalStorage(evt){
@@ -21,7 +21,7 @@ function removeDataFromLocalStorage(evt){
     const savedSettings = localStorage.getItem(LOCALSTORAGE_KEY);
     const parsedSettings = JSON.parse(savedSettings);
 
-    console.log(parsedSettings)
+    console.log(parsedSettings);
 
     evt.currentTarget.reset();
     
@@ -33,9 +33,9 @@ function getDataFromLocalStorage(){
     const parsedSettings = JSON.parse(savedSettings);
 
     if(parsedSettings){
-    inputTextContent.value = parsedSettings.email;
-    textarea.value = parsedSettings.message ;
+    inputTextContent.value = parsedSettings.email || "";
+    textarea.value = parsedSettings.message || "";
     }
 }
 
-getDataFromLocalStorage()
+getDataFromLocalStorage();
