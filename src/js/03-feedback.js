@@ -32,9 +32,9 @@ function getDataFromLocalStorage(){
     const savedSettings = localStorage.getItem(LOCALSTORAGE_KEY);
     const parsedSettings = JSON.parse(savedSettings);
 
-    if(parsedSettings){
-    inputTextContent.value = parsedSettings.email || "";
-    textarea.value = parsedSettings.message || "";
+    if(savedSettings){
+    inputTextContent.value = parsedSettings.email;
+    textarea.value = parsedSettings.message;
     }
 }
 
