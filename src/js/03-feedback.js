@@ -1,18 +1,19 @@
 import throttle from 'lodash.throttle';
 
 const form = document.querySelector(".feedback-form");
-const inputTextContent = document.querySelector("input");
+const input = document.querySelector("input");
 const textarea = document.querySelector("textarea");
 const LOCALSTORAGE_KEY = "feedback-form-state";
 
 form.addEventListener("submit", removeDataFromLocalStorage);
 form.addEventListener('input', throttle(setDataInLocalStorage, 500));
 
-const formData = {};
 
-function setDataInLocalStorage(evt){
-    formData[evt.target.name] = evt.target.value;
-    localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(formData));
+function setDataInLocalStorage() {
+    localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify({
+        email: input.value,
+        message: textarea.value
+    }));
 }
 
 function removeDataFromLocalStorage(evt){
@@ -20,20 +21,22 @@ function removeDataFromLocalStorage(evt){
 
     const savedSettings = localStorage.getItem(LOCALSTORAGE_KEY);
     const parsedSettings = JSON.parse(savedSettings);
-
-    console.log(parsedSettings);
-
-    evt.currentTarget.reset();
     
-    localStorage.removeItem(LOCALSTORAGE_KEY);
+    if (parsedSettings.email === "" || parsedSettings.message === "") {
+        alert("Please fill in all the fields!");
+    } else {
+        console.log(parsedSettings)
+        evt.currentTarget.reset();
+        localStorage.removeItem(LOCALSTORAGE_KEY);
+    }
 }
 
 function getDataFromLocalStorage(){
     const savedSettings = localStorage.getItem(LOCALSTORAGE_KEY);
     const parsedSettings = JSON.parse(savedSettings);
 
-    if(savedSettings){
-    inputTextContent.value = parsedSettings.email;
+    if(parsedSettings){
+    input.value = parsedSettings.email;
     textarea.value = parsedSettings.message;
     }
 }
