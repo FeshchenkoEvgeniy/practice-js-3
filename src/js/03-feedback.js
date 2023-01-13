@@ -34,7 +34,7 @@ function getDataFromLocalStorage(){
 
     if(parsedSettings){
     inputTextContent.value = parsedSettings.email;
-    textarea.value = parsedSettings.message;
+    textarea.value = parsedSettings.message ;
     }
 }
 
